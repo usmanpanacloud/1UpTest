@@ -1,0 +1,41 @@
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  font-family: sans-serif;
+}
+
+.container{
+  background-color: #eeeeee;
+}
+
+.alert{
+  margin-top: 20px;
+}
+.tab-content > .tab-pane{
+  margin: 20px 10px;
+}
+.nav-tabs > li > a{
+  cursor: pointer;
+}
+.navbar-default .navbar-nav > li > a{
+  cursor: pointer;
+}
+.login-form, .signup-form {
+  background-color: #eee;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  h2{
+    text-align: center;
+  }
+  .btn{
+    margin-bottom: 20px;
+  }
+}
+
+.payment-form{
+  max-width: 400px;
+  margin: 20px 20px;
+}

@@ -1,0 +1,92 @@
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" ng-class="{'active':isSelectTab('1')}" >
+      <a role="tab" data-toggle="tab" ng-click="selectTab('1')">Place order</a>
+    </li>
+    <li role="presentation" ng-class="{'active':isSelectTab('2')}">
+      <a role="tab" data-toggle="tab" ng-click="selectTab('2')">Transactions</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" ng-class="{'active':isSelectTab('1')}">
+      <div class="payment-form">
+        <h4>
+          Amount to pay: {{order.amount/100}}$
+        </h4>
+        <form stripe-form="stripeCallback" name="checkoutForm">
+          <div class="form-group">
+            <label for="number">Card Number</label>
+            <input
+              class="form-control"
+              id="number"
+              name="card"
+              payments-format="card"
+              payments-validate="card"
+              ng-model="number"
+              placeholder="Card Number">
+            <small class="text-danger" ng-if="checkoutForm.card.$invalid">Invalid card number</small>
+          </div>
+          <div class="form-group">
+            <label for="expiry">Card Number</label>
+            <input
+              class="form-control"
+              id="expiry"
+              name="expiry"
+              payments-format="expiry"
+              payments-validate="expiry"
+              ng-model="expiry"
+              placeholder="Expiration">
+            <small class="text-danger" ng-if="checkoutForm.expiry.$invalid">Invalid date</small>
+          </div>
+          <div class="form-group">
+            <label for="cvc">Expiration</label>
+            <input
+              class="form-control"
+              id="cvc"
+              name="cvc"
+              payments-format="cvc"
+              payments-validate="cvc"
+              ng-model="cvc"
+              placeholder="CVC">
+            <small class="text-danger" ng-if="checkoutForm.cvc.$invalid">Invalid CVC</small>
+          </div>
+          <button class="btn btn-primary" type="submit">Place Order</button>
+          <div class="alert alert-danger" role="alert" ng-if="stripeError">
+            <strong>Error!</strong> {{ stripeError.message}}
+          </div>
+          <div class="alert alert-success" ng-if="paymentSuccessful">
+            <strong>Success!</strong> {{ paymentSuccessful.message}}
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" ng-class="{'active':isSelectTab('2')}">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Transaction id</th>
+          <th>Amount</th>
+          <th>Currency</th>
+          <th>Date</th>
+          <th>Card Brand</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="t in transactions">
+          <td>{{t.transactionId}}</td>
+          <td>{{(t.amount/100) | currency}}</td>
+          <td>{{t.currency | uppercase}}</td>
+          <td>{{t.date | date:"dd/MM/yyyy 'at' hh:mma"}}</td>
+          <td>{{t.source.brand}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

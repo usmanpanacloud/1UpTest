@@ -1,0 +1,14 @@
+{
+  "generator-bangular": {
+    "version": "0.11.2",
+    "filters": {
+      "backend": "mongo",
+      "reload": "livereload",
+      "ngSanitize": true,
+      "ngAnimate": true,
+      "sockets": false,
+      "auth": true,
+      "ngCookies": true
+    }
+  }
+}
