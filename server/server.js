@@ -22,7 +22,7 @@ server.listen(config.port, config.ip, function () {
     + chalk.yellow('%s')
     + chalk.red(' mode.\n'),
     config.port,
-    app.get('env')
+    config.env
   );
 
   if (config.env === 'development') {
